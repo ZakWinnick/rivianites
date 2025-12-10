@@ -4,8 +4,11 @@ layout: none
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://tinylytics.app/embed/24QX5XExrzNtyEs8jMRX.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
   <title>Preview: Desert Night Observatory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,30 +20,71 @@ layout: none
       box-sizing: border-box;
     }
 
+    /* Light Mode (Default) */
     :root {
-      --night-deep: #0c0f1a;
-      --night-mid: #151929;
-      --night-light: #1e2438;
-      --purple-dark: #2d1f47;
-      --purple-glow: #7c3aed;
-      --sand: #d4a574;
-      --terracotta: #c2703e;
-      --warm-white: #faf6f1;
-      --muted-white: #b8b5b0;
-      --star-white: #fffef5;
-      --accent-cyan: #38bdf8;
+      --bg-deep: #f8fafc;
+      --bg-mid: #ffffff;
+      --bg-light: #f1f5f9;
+      --bg-gradient-top: #dbeafe;
+      --bg-gradient-mid: #bfdbfe;
+      --bg-gradient-bottom: #fef3c7;
+      --bg-gradient-horizon: #fde68a;
+
+      --purple-glow: #6366f1;
+      --sand: #d97706;
+      --terracotta: #ea580c;
+      --text-primary: #1e293b;
+      --text-muted: #64748b;
+      --accent-cyan: #0891b2;
+
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-hover: #f8fafc;
+
+      --timeline-gradient: linear-gradient(180deg, var(--purple-glow), var(--terracotta), var(--sand));
+      --silhouette-color: #1e293b;
+      --stars-display: none;
+    }
+
+    /* Dark Mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-deep: #0c0f1a;
+        --bg-mid: #151929;
+        --bg-light: #1e2438;
+        --bg-gradient-top: #0c0f1a;
+        --bg-gradient-mid: #2d1f47;
+        --bg-gradient-bottom: #3d2a5c;
+        --bg-gradient-horizon: #c2703e;
+
+        --purple-glow: #7c3aed;
+        --sand: #d4a574;
+        --terracotta: #c2703e;
+        --text-primary: #faf6f1;
+        --text-muted: #b8b5b0;
+        --accent-cyan: #38bdf8;
+
+        --card-bg: #151929;
+        --card-border: rgba(255, 255, 255, 0.08);
+        --card-hover: #1e2438;
+
+        --timeline-gradient: linear-gradient(180deg, var(--purple-glow), var(--terracotta), var(--sand));
+        --silhouette-color: #0c0f1a;
+        --stars-display: block;
+      }
     }
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--night-deep);
-      color: var(--warm-white);
+      background: var(--bg-deep);
+      color: var(--text-primary);
       line-height: 1.6;
       min-height: 100vh;
     }
 
-    /* Starfield Background */
+    /* Starfield Background (Dark mode only) */
     .stars {
+      display: var(--stars-display);
       position: fixed;
       top: 0;
       left: 0;
@@ -59,18 +103,18 @@ layout: none
       right: 0;
       bottom: 0;
       background-image:
-        radial-gradient(1px 1px at 20px 30px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 40px 70px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 50px 160px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 90px 40px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 130px 80px, var(--star-white), transparent),
-        radial-gradient(1.5px 1.5px at 160px 120px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 200px 50px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 250px 180px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 300px 90px, var(--star-white), transparent),
-        radial-gradient(1.5px 1.5px at 350px 140px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 400px 60px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 450px 200px, var(--star-white), transparent);
+        radial-gradient(1px 1px at 20px 30px, #fffef5, transparent),
+        radial-gradient(1px 1px at 40px 70px, #fffef5, transparent),
+        radial-gradient(1px 1px at 50px 160px, #fffef5, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fffef5, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fffef5, transparent),
+        radial-gradient(1.5px 1.5px at 160px 120px, #fffef5, transparent),
+        radial-gradient(1px 1px at 200px 50px, #fffef5, transparent),
+        radial-gradient(1px 1px at 250px 180px, #fffef5, transparent),
+        radial-gradient(1px 1px at 300px 90px, #fffef5, transparent),
+        radial-gradient(1.5px 1.5px at 350px 140px, #fffef5, transparent),
+        radial-gradient(1px 1px at 400px 60px, #fffef5, transparent),
+        radial-gradient(1px 1px at 450px 200px, #fffef5, transparent);
       background-repeat: repeat;
       background-size: 500px 300px;
       animation: twinkle 8s ease-in-out infinite alternate;
@@ -97,10 +141,10 @@ layout: none
       padding: 2rem;
       overflow: hidden;
       background: linear-gradient(180deg,
-        var(--night-deep) 0%,
-        var(--purple-dark) 40%,
-        #3d2a5c 70%,
-        var(--terracotta) 95%,
+        var(--bg-gradient-top) 0%,
+        var(--bg-gradient-mid) 40%,
+        var(--bg-gradient-bottom) 70%,
+        var(--bg-gradient-horizon) 95%,
         var(--sand) 100%
       );
     }
@@ -112,7 +156,7 @@ layout: none
       left: 0;
       right: 0;
       height: 120px;
-      background: linear-gradient(180deg, transparent, var(--night-deep));
+      background: linear-gradient(180deg, transparent, var(--bg-deep));
       z-index: 2;
     }
 
@@ -129,7 +173,7 @@ layout: none
     .desert-silhouette svg {
       width: 100%;
       height: 100%;
-      fill: var(--night-deep);
+      fill: var(--silhouette-color);
     }
 
     .hero-content {
@@ -138,6 +182,15 @@ layout: none
       text-align: center;
       max-width: 800px;
       padding-bottom: 4rem;
+    }
+
+    .hero-banner {
+      max-width: 100%;
+      max-height: 260px;
+      height: auto;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
     .hero-label {
@@ -155,7 +208,7 @@ layout: none
       font-weight: 700;
       line-height: 1;
       margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--warm-white) 0%, var(--sand) 100%);
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--sand) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -164,7 +217,7 @@ layout: none
     .hero-subtitle {
       font-size: clamp(1rem, 3vw, 1.5rem);
       font-weight: 300;
-      color: var(--muted-white);
+      color: var(--text-muted);
       margin-bottom: 2rem;
     }
 
@@ -172,13 +225,21 @@ layout: none
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       padding: 0.75rem 1.5rem;
       border-radius: 100px;
       font-family: 'Space Mono', monospace;
       font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .date-pill {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
     }
 
     .date-pill .dot {
@@ -216,7 +277,7 @@ layout: none
     }
 
     .section-header p {
-      color: var(--muted-white);
+      color: var(--text-muted);
       font-weight: 300;
     }
 
@@ -233,7 +294,7 @@ layout: none
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, var(--purple-glow), var(--terracotta), var(--sand));
+      background: var(--timeline-gradient);
       border-radius: 2px;
     }
 
@@ -249,7 +310,7 @@ layout: none
       top: 0.5rem;
       width: 16px;
       height: 16px;
-      background: var(--night-mid);
+      background: var(--bg-mid);
       border: 3px solid var(--purple-glow);
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
@@ -288,7 +349,7 @@ layout: none
 
     .day-route {
       font-size: 0.9rem;
-      color: var(--muted-white);
+      color: var(--text-muted);
       font-weight: 300;
     }
 
@@ -300,16 +361,15 @@ layout: none
     }
 
     .activity-card {
-      background: var(--night-mid);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 16px;
       padding: 1.25rem 1.5rem;
       transition: all 0.2s ease;
     }
 
     .activity-card:hover {
-      background: var(--night-light);
-      border-color: rgba(255, 255, 255, 0.15);
+      background: var(--card-hover);
       transform: translateX(4px);
     }
 
@@ -336,7 +396,7 @@ layout: none
 
     .activity-detail {
       font-size: 0.875rem;
-      color: var(--muted-white);
+      color: var(--text-muted);
       font-weight: 300;
       display: flex;
       align-items: center;
@@ -372,8 +432,8 @@ layout: none
     .resources {
       margin-top: 4rem;
       padding: 2rem;
-      background: var(--night-mid);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 20px;
     }
 
@@ -381,7 +441,7 @@ layout: none
       font-size: 1.1rem;
       font-weight: 500;
       margin-bottom: 1.25rem;
-      color: var(--muted-white);
+      color: var(--text-muted);
     }
 
     .resource-grid {
@@ -395,16 +455,15 @@ layout: none
       align-items: center;
       gap: 0.75rem;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--bg-light);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       text-decoration: none;
-      color: var(--warm-white);
+      color: var(--text-primary);
       transition: all 0.2s ease;
     }
 
     .resource-link:hover {
-      background: rgba(255, 255, 255, 0.06);
       border-color: var(--purple-glow);
     }
 
@@ -429,7 +488,7 @@ layout: none
 
     .resource-sub {
       font-size: 0.7rem;
-      color: var(--muted-white);
+      color: var(--text-muted);
     }
 
     /* Footer */
@@ -438,12 +497,12 @@ layout: none
       z-index: 1;
       text-align: center;
       padding: 3rem 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--card-border);
     }
 
     footer p {
       font-size: 0.8rem;
-      color: var(--muted-white);
+      color: var(--text-muted);
     }
 
     footer a {
@@ -452,7 +511,7 @@ layout: none
     }
 
     footer a:hover {
-      color: var(--warm-white);
+      color: var(--text-primary);
     }
 
     /* Preview Badge */
@@ -475,6 +534,10 @@ layout: none
     @media (max-width: 640px) {
       .hero {
         min-height: 60vh;
+      }
+
+      .hero-banner {
+        max-height: 180px;
       }
 
       .timeline {
@@ -508,6 +571,7 @@ layout: none
       </svg>
     </div>
     <div class="hero-content">
+      <img src="/assets/images/area51-banner.png" alt="Electro-Terrestrials Banner" class="hero-banner">
       <div class="hero-label">Nevada Desert Adventure</div>
       <h1 class="hero-title">Electro-Terrestrials</h1>
       <p class="hero-subtitle">An Area 51 Road Trip for EV Enthusiasts</p>
