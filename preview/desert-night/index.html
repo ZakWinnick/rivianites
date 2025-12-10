@@ -189,8 +189,7 @@ layout: none
       max-height: 260px;
       height: auto;
       margin-bottom: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
     }
 
     .hero-label {
@@ -225,21 +224,13 @@ layout: none
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: var(--card-bg);
+      border: 2px solid var(--purple-glow);
       padding: 0.75rem 1.5rem;
-      border-radius: 100px;
+      border-radius: 8px;
       font-family: 'Space Mono', monospace;
       font-size: 0.9rem;
       color: var(--text-primary);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .date-pill {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.15);
-      }
     }
 
     .date-pill .dot {
