@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electro-Terrestrials: An Area 51 Road Trip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0c0c0c;
+      --text-color: #f5f5f5;
+      --header-bg: #1a1a1a;
+      --border-color: #444;
+      --accent-color: #ffaa33;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    header {
+      position: relative;
+      text-align: center;
+      height: 300px;
+      background-image: url('area51.png');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+    
+    header h1 {
+      position: relative;
+      margin: 0;
+      font-size: 2.5rem;
+      z-index: 1;
+    }
+    
+    .container {
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h2 {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+      font-size: 1.75rem;
+    }
+    
+    .day-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.5rem 0;
+    }
+    
+    .day-list li {
+      margin-bottom: 1.25rem;
+    }
+    
+    .day-list li strong {
+      display: block;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .day-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin: 0.5rem 0 0 0;
+    }
+    
+    .day-list ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+    
+    .links {
+      margin-top: 2rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1.5rem;
+      background-color: var(--header-bg);
+      margin-top: 3rem;
+    }
+    
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.75rem;
+      }
+      
+      .day-list li strong {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <script src="https://tinylytics.app/embed/24QX5XExrzNtyEs8jMRX.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Electro-Terrestrials: An Area 51 Road Trip</h1>
+  </header>
+  
+  <main class="container">
+    <p><strong>Trip Dates:</strong> Friday, June 13, 2025 - Sunday, June 15, 2025</p>
+
+    <section>
+      <h2>Friday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Meet-up: 5:00 PM @ Town Square Las Vegas</strong>
+          <ul>
+            <li>Address: 6605 S Las Vegas Blvd, Las Vegas, NV 89119</li>
+            <li>Charging available:
+              <ul>
+                <li>Tesla Superchargers</li>
+                <li>Rivian Adventure Network chargers</li>
+                <li>Rivian Waypoint chargers</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Departure: 6:00 PM</strong>
+          <ul>
+            <li>Caravan north on US-93 (~95 miles) to Alamo, NV</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Camp: Pickett's RV Park ($45/night)</strong>
+          <ul>
+            <li>Address: 115 Broadway Street, Alamo, NV 89001</li>
+            <li>30/50A charging available</li>
+            <li>Casual hangout after arrival</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Saturday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Drive: Alamo → Rachel (~55 miles via NV-375)</strong>
+          <ul>
+            <li>Photo ops along the Extraterrestrial Highway</li>
+            <li>Explore Groom Lake Road (to Area 51 Front Gate)</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Lunch + Check-In: Little A'le'inn ($30/night)</strong>
+          <ul>
+            <li>Address: 9631 Old Mill St, Rachel, NV 89001</li>
+            <li>30A/50A charging available at RV Park</li>
+            <li>Food, drinks, and charging</li>
+            <li>Optional trail runs in the area</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Evening: Stargazing @ Black Mailbox</strong>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Sunday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Morning:</strong>
+          <ul>
+            <li>Breakfast</li>
+            <li>Optional visit to Area 51 Back Gate</li>
+            <li>Light trail exploring</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Return Drive: Rachel → Las Vegas (~150 miles)</strong>
+        </li>
+        <li>
+          <strong>Wrap-up: Lazy Dog Café</strong>
+          <ul>
+            <li>Address: 6509 S Las Vegas Blvd, Las Vegas, NV 89119</li>
+            <li>Dinner</li>
+            <li>Charging available</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Navigation & Links</h2>
+      <div class="links">
+        <a href="#">OnX Offroad Track (Coming Soon)</a>
+        <a href="#">Gaia GPS Map (Coming Soon)</a>
+        <a href="https://www.dreamlandresort.com" target="_blank" rel="noopener">Dreamland Resort – Area 51 Info</a>
+        <a href="#">Additional Reading (Coming Soon)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 <a href="https://wyldwandering.com" target="_blank" rel="noopener">Wyld Wandering</a> | For All Electric Vehicle Enthusiasts
+  </footer>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a18">
+  <title>Electro-Terrestrials: An Area 51 Road Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0a0a18;
+      --text-color: #e8f0ff;
+      --header-bg: #131326;
+      --border-color: #2a4070;
+      --accent-color: #64ffda;
+      --accent-secondary: #ff5b79;
+      --day-bg: rgba(16, 26, 58, 0.6);
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDEzNSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzFlMWUzMCIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    header {
+      position: relative;
+      text-align: center;
+      height: 480px;
+      background-image: url('area51.png');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 4px solid var(--accent-color);
+      box-shadow: 0 5px 25px rgba(0, 255, 200, 0.15);
+    }
+    
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 24, 0.5) 0%, rgba(20, 30, 80, 0.6) 100%);
+      z-index: 0;
+    }
+    
+    header h1 {
+      position: relative;
+      margin: 0;
+      font-size: 2.8rem;
+      z-index: 1;
+      text-shadow: 0 0 15px rgba(100, 255, 218, 0.8);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+    
+    .container {
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .trip-dates {
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 1.5rem 0 3rem 0;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      line-height: 1.5;
+    }
+
+    .trip-dates strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-color);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .trip-dates span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+      color: var(--accent-secondary);
+    }
+    
+    h2 {
+      position: relative;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      font-size: 1.8rem;
+      display: inline-block;
+      color: white;
+      text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+    }
+    
+    section {
+      background-color: var(--day-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-left: 3px solid var(--accent-color);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .day-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .day-list li {
+      margin-bottom: 1.5rem;
+    }
+    
+    .day-list li strong {
+      display: block;
+      color: var(--accent-secondary);
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+    
+    .day-list ul {
+      list-style: disc;
+      padding-left: 1.8rem;
+      margin: 0.6rem 0 0 0;
+    }
+    
+    .day-list ul li {
+      margin-bottom: 0.6rem;
+    }
+    
+    .day-list ul ul li {
+      list-style-type: circle;
+    }
+    
+    .arrow {
+      display: inline-block;
+      margin: 0 4px;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      position: relative;
+      padding: 0 2px;
+    }
+    
+    a:hover {
+      text-decoration: none;
+      background-color: rgba(100, 255, 218, 0.1);
+      box-shadow: 0 2px 0 var(--accent-color);
+    }
+    
+    .links {
+      background-color: rgba(16, 26, 58, 0.8);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--border-color);
+    }
+    
+    .links a {
+      display: block;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    
+    .links a:hover {
+      background-color: rgba(100, 255, 218, 0.15);
+      transform: translateX(5px);
+      box-shadow: none;
+    }
+    
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1.5rem;
+      background-color: var(--header-bg);
+      margin-top: 3rem;
+      border-top: 2px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+    
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+        max-width: 90%;
+        line-height: 1.3;
+        padding: 0 10px;
+      }
+      
+      .day-list li strong {
+        font-size: 1.1rem;
+      }
+      
+      section {
+        padding: 1rem;
+      }
+      
+      .trip-dates {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <script src="https://tinylytics.app/embed/24QX5XExrzNtyEs8jMRX.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Electro-Terrestrials: An Area 51 Road Trip</h1>
+  </header>
+  
+  <main class="container">
+    <div class="trip-dates">
+      <strong>Trip Dates</strong>
+      <span>Friday, June 13, 2025 - Sunday, June 15, 2025</span>
+    </div>
+
+    <section>
+      <h2>Friday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Meet-up: 5:00 PM @ Town Square Las Vegas</strong>
+          <ul>
+            <li>Address: 6605 S Las Vegas Blvd, Las Vegas, NV 89119</li>
+            <li>Charging available:
+              <ul>
+                <li>Tesla Superchargers</li>
+                <li>Rivian Adventure Network chargers</li>
+                <li>Rivian Waypoint chargers</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Departure: 6:00 PM</strong>
+          <ul>
+            <li>Caravan north on US-93 (~95 miles) to Alamo, NV</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Camp: Pickett's RV Park ($45/night)</strong>
+          <ul>
+            <li>Address: 115 Broadway Street, Alamo, NV 89001</li>
+            <li>30/50A charging available</li>
+            <li>Casual hangout after arrival</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Saturday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Drive: Alamo <span class="arrow">&rarr;</span> Rachel (~55 miles via NV-375)</strong>
+          <ul>
+            <li>Photo ops along the Extraterrestrial Highway</li>
+            <li>Explore Groom Lake Road (to Area 51 Front Gate)</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Lunch + Check-In: Little A'le'inn ($30/night)</strong>
+          <ul>
+            <li>Address: 9631 Old Mill St, Rachel, NV 89001</li>
+            <li>30A/50A charging available at RV Park</li>
+            <li>Food, drinks, and charging</li>
+            <li>Optional trail runs in the area</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Evening: Stargazing @ Black Mailbox</strong>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Sunday</h2>
+      <ul class="day-list">
+        <li>
+          <strong>Morning:</strong>
+          <ul>
+            <li>Breakfast</li>
+            <li>Optional visit to Area 51 Back Gate</li>
+            <li>Light trail exploring</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Return Drive: Rachel <span class="arrow">&rarr;</span> Las Vegas (~150 miles)</strong>
+        </li>
+        <li>
+          <strong>Wrap-up: Lazy Dog Café</strong>
+          <ul>
+            <li>Address: 6509 S Las Vegas Blvd, Las Vegas, NV 89119</li>
+            <li>Dinner</li>
+            <li>Charging available</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Navigation & Links</h2>
+      <div class="links">
+        <a href="#">OnX Offroad Track (Coming Soon)</a>
+        <a href="#">Gaia GPS Map (Coming Soon)</a>
+        <a href="https://www.dreamlandresort.com" target="_blank" rel="noopener">Dreamland Resort - Area 51 Info</a>
+        <a href="#">Additional Reading (Coming Soon)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 <a href="https://wyldwandering.com" target="_blank" rel="noopener">Wyld Wandering</a> | For All Electric Vehicle Enthusiasts
+  </footer>
+</body>
+</html>
