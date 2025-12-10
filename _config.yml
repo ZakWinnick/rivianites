@@ -1,7 +1,7 @@
 title: "Electro-Terrestrials: An Area 51 Road Trip"
 description: "An epic EV adventure to the most mysterious place on Earth"
 url: "https://zakwinnick.github.io"
-baseurl: "/rivianites"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
