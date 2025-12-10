@@ -1,0 +1,675 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview: Desert Night Observatory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --night-deep: #0c0f1a;
+      --night-mid: #151929;
+      --night-light: #1e2438;
+      --purple-dark: #2d1f47;
+      --purple-glow: #7c3aed;
+      --sand: #d4a574;
+      --terracotta: #c2703e;
+      --warm-white: #faf6f1;
+      --muted-white: #b8b5b0;
+      --star-white: #fffef5;
+      --accent-cyan: #38bdf8;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--night-deep);
+      color: var(--warm-white);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Starfield Background */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stars::before,
+    .stars::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 40px 70px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 50px 160px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--star-white), transparent),
+        radial-gradient(1.5px 1.5px at 160px 120px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 200px 50px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 250px 180px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 300px 90px, var(--star-white), transparent),
+        radial-gradient(1.5px 1.5px at 350px 140px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 400px 60px, var(--star-white), transparent),
+        radial-gradient(1px 1px at 450px 200px, var(--star-white), transparent);
+      background-repeat: repeat;
+      background-size: 500px 300px;
+      animation: twinkle 8s ease-in-out infinite alternate;
+    }
+
+    .stars::after {
+      background-position: 250px 150px;
+      animation-delay: -4s;
+      opacity: 0.6;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 2rem;
+      overflow: hidden;
+      background: linear-gradient(180deg,
+        var(--night-deep) 0%,
+        var(--purple-dark) 40%,
+        #3d2a5c 70%,
+        var(--terracotta) 95%,
+        var(--sand) 100%
+      );
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(180deg, transparent, var(--night-deep));
+      z-index: 2;
+    }
+
+    /* Desert Silhouette */
+    .desert-silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      z-index: 1;
+    }
+
+    .desert-silhouette svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--night-deep);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 800px;
+      padding-bottom: 4rem;
+    }
+
+    .hero-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--warm-white) 0%, var(--sand) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      font-weight: 300;
+      color: var(--muted-white);
+      margin-bottom: 2rem;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    .date-pill .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--purple-glow);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--purple-glow);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--purple-glow); }
+      50% { opacity: 0.6; box-shadow: 0 0 20px var(--purple-glow); }
+    }
+
+    /* Main Content */
+    .main-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--muted-white);
+      font-weight: 300;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--purple-glow), var(--terracotta), var(--sand));
+      border-radius: 2px;
+    }
+
+    .day-block {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .day-block::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0.5rem;
+      width: 16px;
+      height: 16px;
+      background: var(--night-mid);
+      border: 3px solid var(--purple-glow);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+    }
+
+    .day-block:nth-child(2)::before {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 15px rgba(194, 112, 62, 0.4);
+    }
+
+    .day-block:nth-child(3)::before {
+      border-color: var(--sand);
+      box-shadow: 0 0 15px rgba(212, 165, 116, 0.4);
+    }
+
+    .day-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .day-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple-glow);
+      margin-bottom: 0.25rem;
+    }
+
+    .day-block:nth-child(2) .day-label { color: var(--terracotta); }
+    .day-block:nth-child(3) .day-label { color: var(--sand); }
+
+    .day-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .day-route {
+      font-size: 0.9rem;
+      color: var(--muted-white);
+      font-weight: 300;
+    }
+
+    /* Activity Cards */
+    .activities {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .activity-card {
+      background: var(--night-mid);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .activity-card:hover {
+      background: var(--night-light);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
+
+    .activity-time {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.375rem;
+    }
+
+    .activity-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .activity-detail {
+      font-size: 0.875rem;
+      color: var(--muted-white);
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .activity-detail::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--sand);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .charge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: linear-gradient(135deg, #065f46, #047857);
+      color: #6ee7b7;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.5rem;
+    }
+
+    /* Resources */
+    .resources {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: var(--night-mid);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+    }
+
+    .resources h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      color: var(--muted-white);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--warm-white);
+      transition: all 0.2s ease;
+    }
+
+    .resource-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--purple-glow);
+    }
+
+    .resource-link.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .resource-icon {
+      font-size: 1.25rem;
+    }
+
+    .resource-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resource-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .resource-sub {
+      font-size: 0.7rem;
+      color: var(--muted-white);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted-white);
+    }
+
+    footer a {
+      color: var(--sand);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--warm-white);
+    }
+
+    /* Preview Badge */
+    .preview-badge {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--purple-glow);
+      color: white;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      z-index: 100;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 60vh;
+      }
+
+      .timeline {
+        padding-left: 2rem;
+      }
+
+      .timeline::before {
+        left: 5px;
+      }
+
+      .day-block::before {
+        left: -1.75rem;
+        width: 12px;
+        height: 12px;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="preview-badge">Preview: Desert Night</div>
+
+  <header class="hero">
+    <div class="desert-silhouette">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <path d="M0,200 L0,120 Q100,100 200,110 T400,90 T600,100 T800,85 T1000,95 T1200,80 T1440,100 L1440,200 Z"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-label">Nevada Desert Adventure</div>
+      <h1 class="hero-title">Electro-Terrestrials</h1>
+      <p class="hero-subtitle">An Area 51 Road Trip for EV Enthusiasts</p>
+      <div class="date-pill">
+        <span class="dot"></span>
+        <span>Dates Coming Soon</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="section-header">
+      <h2>The Journey</h2>
+      <p>Three days under the stars of Nevada's darkest skies</p>
+    </div>
+
+    <div class="timeline">
+      <!-- Day 1 -->
+      <div class="day-block">
+        <div class="day-header">
+          <div class="day-label">Day One</div>
+          <div class="day-title">Friday</div>
+          <div class="day-route">Las Vegas to Alamo</div>
+        </div>
+        <div class="activities">
+          <div class="activity-card">
+            <div class="activity-time">5:00 PM</div>
+            <div class="activity-name">Meet-up at Town Square Las Vegas</div>
+            <div class="activity-details">
+              <div class="activity-detail">6605 S Las Vegas Blvd, Las Vegas, NV 89119</div>
+              <div class="activity-detail">Tesla Superchargers + Rivian Network<span class="charge-tag">Charge</span></div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">6:00 PM</div>
+            <div class="activity-name">Caravan North to Alamo</div>
+            <div class="activity-details">
+              <div class="activity-detail">~95 miles on US-93</div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">Night</div>
+            <div class="activity-name">Camp at Pickett's RV Park</div>
+            <div class="activity-details">
+              <div class="activity-detail">115 Broadway Street, Alamo, NV 89001</div>
+              <div class="activity-detail">$45/night with 30/50A charging<span class="charge-tag">Charge</span></div>
+              <div class="activity-detail">Casual hangout after arrival</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-block">
+        <div class="day-header">
+          <div class="day-label">Day Two</div>
+          <div class="day-title">Saturday</div>
+          <div class="day-route">The Extraterrestrial Highway</div>
+        </div>
+        <div class="activities">
+          <div class="activity-card">
+            <div class="activity-time">Morning</div>
+            <div class="activity-name">Drive to Rachel via ET Highway</div>
+            <div class="activity-details">
+              <div class="activity-detail">~55 miles on NV-375</div>
+              <div class="activity-detail">Photo ops along the way</div>
+              <div class="activity-detail">Explore Groom Lake Road to Area 51 Front Gate</div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">Afternoon</div>
+            <div class="activity-name">Lunch + Check-In at Little A'Le'Inn</div>
+            <div class="activity-details">
+              <div class="activity-detail">9631 Old Mill St, Rachel, NV 89001</div>
+              <div class="activity-detail">$30/night with 30/50A charging<span class="charge-tag">Charge</span></div>
+              <div class="activity-detail">Food, drinks, and good vibes</div>
+              <div class="activity-detail">Optional trail runs in the area</div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">Evening</div>
+            <div class="activity-name">Stargazing at Black Mailbox</div>
+            <div class="activity-details">
+              <div class="activity-detail">Dark skies and alien vibes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-block">
+        <div class="day-header">
+          <div class="day-label">Day Three</div>
+          <div class="day-title">Sunday</div>
+          <div class="day-route">Exploration & Return</div>
+        </div>
+        <div class="activities">
+          <div class="activity-card">
+            <div class="activity-time">Morning</div>
+            <div class="activity-name">Breakfast + Exploration</div>
+            <div class="activity-details">
+              <div class="activity-detail">Optional visit to Area 51 Back Gate</div>
+              <div class="activity-detail">Light trail exploring</div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">Afternoon</div>
+            <div class="activity-name">Return Drive to Las Vegas</div>
+            <div class="activity-details">
+              <div class="activity-detail">~150 miles back to civilization</div>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-time">Evening</div>
+            <div class="activity-name">Wrap-up at Lazy Dog Cafe</div>
+            <div class="activity-details">
+              <div class="activity-detail">6509 S Las Vegas Blvd, Las Vegas, NV 89119</div>
+              <div class="activity-detail">Dinner and charging available<span class="charge-tag">Charge</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources -->
+    <div class="resources">
+      <h3>Resources & Navigation</h3>
+      <div class="resource-grid">
+        <a href="https://www.dreamlandresort.com" target="_blank" rel="noopener" class="resource-link">
+          <span class="resource-icon">&#128125;</span>
+          <span class="resource-text">
+            <span class="resource-name">Dreamland Resort</span>
+            <span class="resource-sub">Area 51 Info</span>
+          </span>
+        </a>
+        <div class="resource-link disabled">
+          <span class="resource-icon">&#128205;</span>
+          <span class="resource-text">
+            <span class="resource-name">OnX Offroad Track</span>
+            <span class="resource-sub">Coming Soon</span>
+          </span>
+        </div>
+        <div class="resource-link disabled">
+          <span class="resource-icon">&#128506;</span>
+          <span class="resource-text">
+            <span class="resource-name">Gaia GPS Map</span>
+            <span class="resource-sub">Coming Soon</span>
+          </span>
+        </div>
+        <div class="resource-link disabled">
+          <span class="resource-icon">&#128218;</span>
+          <span class="resource-text">
+            <span class="resource-name">Additional Reading</span>
+            <span class="resource-sub">Coming Soon</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <a href="https://wyldwandering.com" target="_blank" rel="noopener">Wyld Wandering</a> &middot; For All Electric Vehicle Enthusiasts</p>
+  </footer>
+</body>
+</html>
