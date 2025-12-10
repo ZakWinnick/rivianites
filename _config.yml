@@ -1,0 +1,20 @@
+title: "Electro-Terrestrials: An Area 51 Road Trip"
+description: "An epic EV adventure to the most mysterious place on Earth"
+url: "https://zakwinnick.github.io"
+baseurl: "/rivianites"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - "*.pdf"
+  - "*.kmz"
+  - index-old.html
+  - index-new.html
+  - index-current.html

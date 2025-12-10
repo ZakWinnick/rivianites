@@ -1,383 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <script src="https://tinylytics.app/embed/24QX5XExrzNtyEs8jMRX.js" defer></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff6b35">
-  <title>Electro-Terrestrials: An Area 51 Road Trip</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+---
+layout: default
+title: "Electro-Terrestrials: An Area 51 Road Trip"
+---
 
-    :root {
-      --deep-space: #0a0e27;
-      --midnight-blue: #1a1f3a;
-      --dark-purple: #2d1b3d;
-      --desert-orange: #ff6b35;
-      --neon-green: #39ff14;
-      --neon-cyan: #00ffff;
-      --neon-pink: #ff006e;
-      --soft-white: #e8e9f0;
-      --muted-orange: #ff8c42;
-    }
-
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--deep-space);
-      color: var(--soft-white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--dark-purple) 0%, var(--midnight-blue) 100%);
-      padding: 1rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 8px solid var(--neon-green);
-    }
-
-    .hero::before {
-      content: '◆';
-      position: absolute;
-      font-size: 300px;
-      color: rgba(57, 255, 20, 0.05);
-      top: -50px;
-      right: -50px;
-      transform: rotate(45deg);
-    }
-
-    .hero::after {
-      content: '▲';
-      position: absolute;
-      font-size: 200px;
-      color: rgba(0, 255, 255, 0.05);
-      bottom: -50px;
-      left: -30px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-banner {
-      max-width: 100%;
-      max-height: 300px;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 700;
-      color: var(--soft-white);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 30px rgba(57, 255, 20, 0.5), 4px 4px 0px rgba(0, 0, 0, 0.3);
-    }
-
-    .subtitle {
-      font-family: 'Courier Prime', monospace;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: var(--neon-cyan);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-    }
-
-    .dates-badge {
-      display: inline-block;
-      background: rgba(0, 0, 0, 0.5);
-      color: var(--neon-pink);
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      font-family: 'Courier Prime', monospace;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: 3px solid var(--neon-pink);
-      box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-
-    /* Day Cards */
-    .day-card {
-      background: var(--midnight-blue);
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      border-left: 8px solid var(--muted-orange);
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .day-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 50px rgba(57, 255, 20, 0.2);
-    }
-
-    .day-card:nth-child(2) {
-      border-left-color: var(--neon-green);
-    }
-
-    .day-card:nth-child(3) {
-      border-left-color: var(--neon-cyan);
-    }
-
-    .day-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 3px dashed rgba(57, 255, 20, 0.2);
-    }
-
-    .day-number {
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--muted-orange);
-      line-height: 1;
-      font-family: 'Courier Prime', monospace;
-      text-shadow: 0 0 20px rgba(255, 140, 66, 0.5);
-    }
-
-    .day-card:nth-child(2) .day-number {
-      color: var(--neon-green);
-      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-    }
-
-    .day-card:nth-child(3) .day-number {
-      color: var(--neon-cyan);
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-    }
-
-    .day-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--soft-white);
-    }
-
-    .activity {
-      background: rgba(57, 255, 20, 0.05);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid var(--neon-green);
-    }
-
-    .activity:last-child {
-      margin-bottom: 0;
-    }
-
-    .activity-time {
-      font-family: 'Courier Prime', monospace;
-      font-weight: 700;
-      color: var(--neon-pink);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
-    }
-
-    .activity-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--soft-white);
-    }
-
-    .activity-details {
-      color: rgba(232, 233, 240, 0.8);
-      line-height: 1.8;
-    }
-
-    .detail-item {
-      padding-left: 1.5rem;
-      position: relative;
-      margin-bottom: 0.5rem;
-    }
-
-    .detail-item::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--neon-cyan);
-      font-weight: 700;
-    }
-
-    .charging-icon {
-      display: inline-block;
-      background: var(--neon-green);
-      color: var(--deep-space);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-left: 0.5rem;
-      font-family: 'Courier Prime', monospace;
-      box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-    }
-
-    /* Links Section */
-    .links-section {
-      background: rgba(0, 0, 0, 0.4);
-      color: var(--soft-white);
-      padding: 3rem;
-      border-radius: 20px;
-      margin-top: 4rem;
-      border: 2px solid rgba(57, 255, 20, 0.2);
-    }
-
-    .links-title {
-      font-size: 2rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--neon-cyan);
-      text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-    }
-
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .link-card {
-      background: rgba(57, 255, 20, 0.05);
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      border: 2px solid rgba(57, 255, 20, 0.2);
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: var(--soft-white);
-      display: block;
-    }
-
-    .link-card:hover {
-      border-color: var(--neon-green);
-      background: rgba(57, 255, 20, 0.15);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 25px rgba(57, 255, 20, 0.3);
-    }
-
-    .link-card.coming-soon {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      background: rgba(0, 0, 0, 0.3);
-      margin-top: 4rem;
-      font-family: 'Courier Prime', monospace;
-      border-top: 2px solid rgba(57, 255, 20, 0.2);
-    }
-
-    footer a {
-      color: var(--neon-cyan);
-      text-decoration: none;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-
-    footer a:hover {
-      color: var(--neon-green);
-      text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero {
-        padding: 3rem 1.5rem;
-      }
-
-      .day-card {
-        padding: 2rem 1.5rem;
-      }
-
-      .day-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-
-      .day-number {
-        font-size: 3rem;
-      }
-
-      .day-title {
-        font-size: 2rem;
-      }
-
-      .links-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-content">
-      <img src="area51-banner.png" alt="Electro-Terrestrials Banner" class="hero-banner">
-      <div class="dates-badge">TBD · Coming Soon</div>
+<header class="hero">
+  <div class="hero-content">
+    <img src="{{ '/assets/images/area51-banner.png' | relative_url }}" alt="Electro-Terrestrials Banner" class="hero-banner">
+    <h1 class="hero-title">Electro-Terrestrials</h1>
+    <p class="hero-subtitle">An Area 51 Road Trip for EV Enthusiasts</p>
+    <div class="dates-badge">
+      <span>TBD</span>
+      <span>&middot;</span>
+      <span>Coming Soon</span>
     </div>
   </div>
+</header>
 
-  <!-- Main Content -->
-  <div class="container">
-    <!-- Friday -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-number">Day 1</div>
-        <div class="day-title">Friday</div>
+<main class="container">
+  <section class="section-intro">
+    <h2>The Itinerary</h2>
+    <p>Three days of adventure through Nevada's most mysterious landscape</p>
+  </section>
+
+  <!-- Day 1: Friday -->
+  <article class="day-card">
+    <div class="day-header">
+      <div class="day-badge">Day 1</div>
+      <div class="day-info">
+        <h3>Friday</h3>
+        <span>Las Vegas to Alamo</span>
       </div>
+    </div>
 
+    <div class="activities">
       <div class="activity">
         <div class="activity-time">5:00 PM</div>
-        <div class="activity-title">Meet-up @ Town Square Las Vegas</div>
+        <div class="activity-title">Meet-up at Town Square Las Vegas</div>
         <div class="activity-details">
           <div class="detail-item">6605 S Las Vegas Blvd, Las Vegas, NV 89119</div>
-          <div class="detail-item">Tesla Superchargers + Rivian Network <span class="charging-icon">⚡ CHARGE</span></div>
+          <div class="detail-item">Tesla Superchargers + Rivian Network<span class="charging-badge">Charge</span></div>
         </div>
       </div>
 
@@ -391,22 +52,27 @@
 
       <div class="activity">
         <div class="activity-time">Night</div>
-        <div class="activity-title">Camp @ Pickett's RV Park</div>
+        <div class="activity-title">Camp at Pickett's RV Park</div>
         <div class="activity-details">
           <div class="detail-item">115 Broadway Street, Alamo, NV 89001</div>
-          <div class="detail-item">$45/night with 30/50A charging <span class="charging-icon">⚡ CHARGE</span></div>
+          <div class="detail-item">$45/night with 30/50A charging<span class="charging-badge">Charge</span></div>
           <div class="detail-item">Casual hangout after arrival</div>
         </div>
       </div>
     </div>
+  </article>
 
-    <!-- Saturday -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-number">Day 2</div>
-        <div class="day-title">Saturday</div>
+  <!-- Day 2: Saturday -->
+  <article class="day-card">
+    <div class="day-header">
+      <div class="day-badge">Day 2</div>
+      <div class="day-info">
+        <h3>Saturday</h3>
+        <span>The Extraterrestrial Highway</span>
       </div>
+    </div>
 
+    <div class="activities">
       <div class="activity">
         <div class="activity-time">Morning</div>
         <div class="activity-title">Drive to Rachel via Extraterrestrial Highway</div>
@@ -419,10 +85,10 @@
 
       <div class="activity">
         <div class="activity-time">Afternoon</div>
-        <div class="activity-title">Lunch + Check-In @ Little A'Le'Inn</div>
+        <div class="activity-title">Lunch + Check-In at Little A'Le'Inn</div>
         <div class="activity-details">
           <div class="detail-item">9631 Old Mill St, Rachel, NV 89001</div>
-          <div class="detail-item">$30/night with 30/50A charging <span class="charging-icon">⚡ CHARGE</span></div>
+          <div class="detail-item">$30/night with 30/50A charging<span class="charging-badge">Charge</span></div>
           <div class="detail-item">Food, drinks, and good vibes</div>
           <div class="detail-item">Optional trail runs in the area</div>
         </div>
@@ -430,20 +96,25 @@
 
       <div class="activity">
         <div class="activity-time">Evening</div>
-        <div class="activity-title">Stargazing @ Black Mailbox</div>
+        <div class="activity-title">Stargazing at Black Mailbox</div>
         <div class="activity-details">
           <div class="detail-item">Dark skies and alien vibes</div>
         </div>
       </div>
     </div>
+  </article>
 
-    <!-- Sunday -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-number">Day 3</div>
-        <div class="day-title">Sunday</div>
+  <!-- Day 3: Sunday -->
+  <article class="day-card">
+    <div class="day-header">
+      <div class="day-badge">Day 3</div>
+      <div class="day-info">
+        <h3>Sunday</h3>
+        <span>Exploration & Return</span>
       </div>
+    </div>
 
+    <div class="activities">
       <div class="activity">
         <div class="activity-time">Morning</div>
         <div class="activity-title">Breakfast + Exploration</div>
@@ -463,43 +134,43 @@
 
       <div class="activity">
         <div class="activity-time">Evening</div>
-        <div class="activity-title">Wrap-up @ Lazy Dog Cafe</div>
+        <div class="activity-title">Wrap-up at Lazy Dog Cafe</div>
         <div class="activity-details">
           <div class="detail-item">6509 S Las Vegas Blvd, Las Vegas, NV 89119</div>
-          <div class="detail-item">Dinner and charging available <span class="charging-icon">⚡ CHARGE</span></div>
+          <div class="detail-item">Dinner and charging available<span class="charging-badge">Charge</span></div>
         </div>
       </div>
     </div>
+  </article>
 
-    <!-- Links -->
-    <div class="links-section">
-      <div class="links-title">Resources & Navigation</div>
-      <div class="links-grid">
-        <a href="https://www.dreamlandresort.com" target="_blank" rel="noopener" class="link-card">
-          <div>👽 Dreamland Resort</div>
-          <small>Area 51 Info</small>
-        </a>
-        <div class="link-card coming-soon">
-          <div>📍 OnX Offroad Track</div>
-          <small>Coming Soon</small>
-        </div>
-        <div class="link-card coming-soon">
-          <div>🗺️ Gaia GPS Map</div>
-          <small>Coming Soon</small>
-        </div>
-        <div class="link-card coming-soon">
-          <div>📚 Additional Reading</div>
-          <small>Coming Soon</small>
-        </div>
+  <!-- Resources -->
+  <section class="resources-section">
+    <h2 class="resources-title">Resources & Navigation</h2>
+    <div class="resources-grid">
+      <a href="https://www.dreamlandresort.com" target="_blank" rel="noopener" class="resource-card">
+        <span class="icon">&#128125;</span>
+        <span class="label">Dreamland Resort</span>
+        <span class="sublabel">Area 51 Info</span>
+      </a>
+      <div class="resource-card disabled">
+        <span class="icon">&#128205;</span>
+        <span class="label">OnX Offroad Track</span>
+        <span class="sublabel">Coming Soon</span>
+      </div>
+      <div class="resource-card disabled">
+        <span class="icon">&#128506;</span>
+        <span class="label">Gaia GPS Map</span>
+        <span class="sublabel">Coming Soon</span>
+      </div>
+      <div class="resource-card disabled">
+        <span class="icon">&#128218;</span>
+        <span class="label">Additional Reading</span>
+        <span class="sublabel">Coming Soon</span>
       </div>
     </div>
-  </div>
+  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 <a href="https://wyldwandering.com" target="_blank" rel="noopener">Wyld Wandering</a> | For All Electric Vehicle Enthusiasts
-  </footer>
-
-  <script src="https://tinylytics.app/embed/24QX5XExrzNtyEs8jMRX.js" defer></script>
-</body>
-</html>
+<footer>
+  <p>&copy; 2025 <a href="https://wyldwandering.com" target="_blank" rel="noopener">Wyld Wandering</a> &middot; For All Electric Vehicle Enthusiasts</p>
+</footer>

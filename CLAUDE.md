@@ -4,50 +4,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static event marketing website for "Rivianites / Electro-Terrestrials" - an Area 51 road trip event for electric vehicle enthusiasts (primarily Rivian owners). The site uses a neon cyberpunk aesthetic with no build system or framework.
+Jekyll-based static site for "Electro-Terrestrials" - an Area 51 road trip event for electric vehicle enthusiasts. Hosted on GitHub Pages with automatic light/dark mode based on system preferences.
 
 ## Development
 
-**No build process required** - this is pure static HTML/CSS.
-
-To run locally:
 ```bash
-python -m http.server
-# or
-npx http-server
+# Install dependencies
+bundle install
+
+# Run local server
+bundle exec jekyll serve
+
+# Build for production
+bundle exec jekyll build
 ```
 
-Then open `http://localhost:8000` (or the appropriate port).
+Site runs at `http://localhost:4000/rivianites/`
 
 ## Architecture
 
 **Tech Stack:**
-- Vanilla HTML5/CSS3
-- No JavaScript framework (only external analytics via Tinylytics)
-- Google Fonts (Space Grotesk, Courier Prime, Inter)
+- Jekyll (GitHub Pages compatible)
+- CSS with `prefers-color-scheme` for automatic light/dark mode
+- Google Fonts (Inter, JetBrains Mono)
+- Tinylytics analytics (in `<head>` of `_layouts/default.html`)
 
-**File Structure:**
-- `index.html` - Primary/current version (505 lines, most polished)
-- `index-current.html`, `index-new.html`, `index-old.html` - Design iterations
-- `*.png` - Banner and background images
-- `*.pdf`, `*.kmz` - Event documents and map data
+**Directory Structure:**
+```
+_config.yml          # Jekyll config, site metadata
+_layouts/
+  default.html       # Base layout with Tinylytics, fonts, CSS link
+assets/
+  css/main.css       # All styles with light/dark mode variables
+  images/            # Banner and other images
+index.html           # Main content with Jekyll front matter
+Gemfile              # Ruby dependencies (github-pages gem)
+```
 
-**HTML Structure:**
-All CSS is embedded in `<head>` within a `<style>` tag. The body contains:
-1. Hero section with banner and date badge
-2. Day cards (Friday, Saturday, Sunday) with activities
-3. Links/resources section
-4. Footer
-
-**CSS Architecture:**
-- CSS custom properties in `:root` for theming (12 color variables)
-- Key colors: `--deep-space` (background), `--neon-green`, `--neon-cyan`, `--neon-pink` (accents)
-- Mobile breakpoint at 768px
-- Flexbox and CSS Grid for layout
+**CSS Theme System:**
+- Light mode: Clean white/gray palette with indigo/purple accents
+- Dark mode: Dark zinc backgrounds with brighter accent variants
+- Variables defined in `:root`, overridden via `@media (prefers-color-scheme: dark)`
+- Key variables: `--bg-primary`, `--text-primary`, `--accent-primary`
 
 ## Content Notes
 
 - Site includes real addresses, charging locations (Tesla/Rivian networks), and pricing
-- KMZ file provides Google Earth route data
-- "Coming Soon" placeholders exist for future content
+- "Coming Soon" placeholders exist for future resource links
 - Footer credits "Wyld Wandering"
