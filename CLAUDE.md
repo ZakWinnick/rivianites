@@ -2,53 +2,121 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+## Overview
 
-Jekyll-based static site for "Electro-Terrestrials" - an Area 51 road trip event for electric vehicle enthusiasts. Hosted on GitHub Pages with automatic light/dark mode based on system preferences.
+"Electro-Terrestrials" - Jekyll-based single-page site for an Area 51 road trip event for electric vehicle enthusiasts. Live at https://area51.rivianites.online. Features automatic light/dark mode based on system preferences.
 
-## Development
+## Development Commands
 
 ```bash
 # Install dependencies
 bundle install
 
-# Run local server
+# Local development
 bundle exec jekyll serve
+# Runs at http://localhost:4000/rivianites/
 
 # Build for production
 bundle exec jekyll build
 ```
 
-Site runs at `http://localhost:4000/rivianites/`
+Deployment: Automatic via GitHub Pages on push to `main`.
 
-## Architecture
+## Project Structure
 
-**Tech Stack:**
-- Jekyll (GitHub Pages compatible)
-- CSS with `prefers-color-scheme` for automatic light/dark mode
-- Google Fonts (Inter, JetBrains Mono)
-- Tinylytics analytics (in `<head>` of `_layouts/default.html`)
-
-**Directory Structure:**
 ```
-_config.yml          # Jekyll config, site metadata
-_layouts/
-  default.html       # Base layout with Tinylytics, fonts, CSS link
-assets/
-  css/main.css       # All styles with light/dark mode variables
-  images/            # Banner and other images
-index.html           # Main content with Jekyll front matter
-Gemfile              # Ruby dependencies (github-pages gem)
+/
+├── _config.yml              # Jekyll config
+├── _layouts/
+│   └── default.html         # Base template (fonts, analytics, CSS)
+├── assets/
+│   ├── css/main.css         # All styles with light/dark variables
+│   └── images/
+│       └── area51-banner.png
+├── index.html               # Main event page content
+├── Gemfile                  # github-pages gem
+├── CNAME                    # Custom domain
+├── *.pdf                    # Route maps and guides (excluded from build)
+├── *.kmz                    # GPS route file (excluded from build)
+└── *.png                    # Event graphics
 ```
 
-**CSS Theme System:**
-- Light mode: Clean white/gray palette with indigo/purple accents
-- Dark mode: Dark zinc backgrounds with brighter accent variants
-- Variables defined in `:root`, overridden via `@media (prefers-color-scheme: dark)`
-- Key variables: `--bg-primary`, `--text-primary`, `--accent-primary`
+## Configuration
+
+From `_config.yml`:
+- **Title**: "Electro-Terrestrials: An Area 51 Road Trip"
+- **URL**: `https://area51.rivianites.online`
+- **Baseurl**: `` (empty)
+- **Excluded**: Gemfile*, README, CLAUDE.md, PDFs, KMZ files
+
+## CSS Theme System
+
+Automatic light/dark mode using `prefers-color-scheme`:
+
+### Light Mode (Default)
+```css
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --accent-primary: #6366f1;   /* Indigo */
+  --accent-secondary: #8b5cf6; /* Purple */
+}
+```
+
+### Dark Mode
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #18181b;
+    --bg-secondary: #27272a;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --accent-primary: #818cf8;
+    --accent-secondary: #a78bfa;
+  }
+}
+```
+
+### Key Variables
+| Variable | Purpose |
+|----------|---------|
+| `--bg-primary` | Main background |
+| `--bg-secondary` | Cards, sections |
+| `--text-primary` | Headings, body text |
+| `--text-secondary` | Muted text |
+| `--accent-primary` | Links, buttons |
+| `--border-color` | Dividers, borders |
+
+## Typography
+
+- **Primary**: Inter (Google Fonts)
+- **Monospace**: JetBrains Mono (Google Fonts)
+- Loaded in `_layouts/default.html`
+
+## Analytics
+
+Tinylytics tracker in `<head>` of `_layouts/default.html`.
 
 ## Content Notes
 
-- Site includes real addresses, charging locations (Tesla/Rivian networks), and pricing
-- "Coming Soon" placeholders exist for future resource links
-- Footer credits "Wyld Wandering"
+The site includes real-world information:
+- Actual addresses and locations
+- Charging station details (Tesla Supercharger, Rivian Adventure Network)
+- Route-specific pricing and distances
+- "Coming Soon" placeholders for future resource links
+
+## Assets
+
+| File | Description |
+|------|-------------|
+| `area51-banner.png` | Hero banner image |
+| `area51.png`, `area51-1.png`, `area51-2.png` | Event graphics |
+| `NTTRC01_geo.pdf` | Nevada Test and Training Range map |
+| `a51vg.pdf` | Area 51 visitor guide |
+| `rider.kmz` | GPS route file for navigation |
+
+## Deployment
+
+GitHub Pages serves from `main` branch. Custom domain configured via CNAME file.
